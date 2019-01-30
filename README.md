@@ -1,2 +1,2 @@
-# PersonReID_Dataset_Downloader
-Simple Tool for Downloading PersonReID Dataset
+# PersonReID Dataset Downloader
+Simple Tool for Downloading Person ReID Datasets
