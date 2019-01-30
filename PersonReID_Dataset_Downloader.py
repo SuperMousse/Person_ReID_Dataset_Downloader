@@ -3,6 +3,7 @@ import warnings
 warnings.filterwarnings('ignore','.*conversion.*')
 
 import os
+import h5py
 import zipfile
 import shutil
 import requests
@@ -137,4 +138,4 @@ if __name__ == "__main__":
     parser.add_argument(dest="save_dir", action="store", default="~/Datasets/",help="")
     parser.add_argument(dest="dataset_name", action="store", type=str,help="")
     args = parser.parse_args() 
-    reiddataset_downloader(args.save_dir,args.dataset_name)
+    PersonReID_Dataset_Downloader(args.save_dir,args.dataset_name)
