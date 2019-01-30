@@ -130,3 +130,11 @@ def PersonReID_Dataset_Downloader(save_dir, dataset_name):
             print('Done')
     else:
         print("Dataset Check Success: %s exists!" %dataset_name)
+
+#For United Testing and External Use
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Dataset Name and Dataset Directory')
+    parser.add_argument(dest="save_dir", action="store", default="~/Datasets/",help="")
+    parser.add_argument(dest="dataset_name", action="store", type=str,help="")
+    args = parser.parse_args() 
+    reiddataset_downloader(args.save_dir,args.dataset_name)
