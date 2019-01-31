@@ -9,6 +9,8 @@
 * DukeMTMCAttribute
 
 Download from my google drive and can be modified to your personal google drive files.
+
+Make life much easier when deploying the training on the server.
 ____
 ### PersonReID_Dataset_Downloader Function: 2 inputs
 1. save_dir: Saving Directory for the dataset (string)
