@@ -1,5 +1,5 @@
 # A Simple Tool for Downloading Popular Person ReID Datasets (CUHK03, Market1501, DuketMTMC)
-## [Demo](https://github.com/LinShanify/PersonReID_Dataset_Downloader/blob/master/demo.ipynb)
+## [Demo](https://github.com/LinShanify/Person_ReID_Dataset_Downloader/blob/master/demo.ipynb)
 
 ### Currently 3 reid datasets and 2 attributes datasets are available
 * CUHK03
@@ -13,37 +13,37 @@ Download from my google drive and can be modified to your personal google drive 
 
 Make life much easier when deploying the training on the server.
 ____
-### PersonReID_Dataset_Downloader Function: 2 inputs
+### Person_ReID_Dataset_Downloader Function: 2 inputs
 1. save_dir: Saving Directory for the dataset (string)
 2. dataset_name: Dataset name listed above (string)
 
 ``` python
-from PersonReID_Dataset_Downloader import PersonReID_Dataset_Downloader
+from Person_ReID_Dataset_Downloader import Person_ReID_Dataset_Downloader
 # Download CUHK03 Dataset into the datasets folder
-PersonReID_Dataset_Downloader('./datasets','CUHK03')
+Person_ReID_Dataset_Downloader('./datasets','CUHK03')
 
 # Download Market1501 Dataset into the datasets folder
-PersonReID_Dataset_Downloader('./datasets','Market1501')
+Person_ReID_Dataset_Downloader('./datasets','Market1501')
 
 # Download DukeMTMC Dataset into the datasets folder
-PersonReID_Dataset_Downloader('./datasets','DukeMTMC')
+Person_ReID_Dataset_Downloader('./datasets','DukeMTMC')
 
 # Download MSMT17 Dataset into the datasets folder
-PersonReID_Dataset_Downloader('./datasets','MSMT17')
+Person_ReID_Dataset_Downloader('./datasets','MSMT17')
 
 # Download Market1501 Attribute Dataset into the datasets folder
-PersonReID_Dataset_Downloader('./datasets','Market1501Attribute')
+Person_ReID_Dataset_Downloader('./datasets','Market1501Attribute')
 
 # Download DukeMTMC Attribute Dataset into the datasets folder
-PersonReID_Dataset_Downloader('./datasets','DukeMTMCAttribute')
+Person_ReID_Dataset_Downloader('./datasets','DukeMTMCAttribute')
 ```
 ____
-### `PersonReID_Dataset_Downloader` function can also be called from Command Line
+### `Person_ReID_Dataset_Downloader` function can also be called from Command Line
 ``` Bash
-python PersonReID_Dataset_Downloader.py ./datasets DukeMTMCAttribute
+python Person_ReID_Dataset_Downloader.py ./datasets DukeMTMCAttribute
 ```
 ___
-## You can add, delete or replace the dataset by editing the  `dataset` dictionary in the `PersonReID_Dataset_Downloader.py`
+## You can add, delete or replace the dataset by editing the  `dataset` dictionary in the `Person_ReID_Dataset_Downloader.py`
 
 Dataset_name: Google_Drives_File_ID
 
