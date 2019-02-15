@@ -3,12 +3,10 @@ import warnings
 warnings.filterwarnings('ignore','.*conversion.*')
 
 import os
-import h5py
 import zipfile
 import shutil
 import requests
 import numpy as np
-from PIL import Image
 import argparse
 
 ################################
@@ -20,7 +18,8 @@ dataset = {
     'Market1501': '0B2FnquNgAXonU3RTcE1jQlZ3X0E',
     'Market1501Attribute' : '1YMgni5oz-RPkyKHzOKnYRR2H3IRKdsHO',
     'DukeMTMC': '1qtFGJQ6eFu66Tt7WG85KBxtACSE8RBZ0',
-    'DukeMTMCAttribute' : '1eilPJFnk_EHECKj2glU_ZLLO7eR3JIiO'
+    'DukeMTMCAttribute' : '1eilPJFnk_EHECKj2glU_ZLLO7eR3JIiO',
+    'MSMT17':'18EFJN4gfgv18ayL01S7EUm-kSvQvyNmE',
 }
 
 ##########################
@@ -56,50 +55,11 @@ def save_response_content(response, destination):
             if chunk: # filter out keep-alive new chunks
                 f.write(chunk)
 
-#############################
-# Convert CUHK03 into Images#
-#############################
-def cuhk03_to_image(CUHK03_dir):
-    
-    f = h5py.File(os.path.join(CUHK03_dir,'cuhk-03.mat'))
-
-    detected_labeled = ['detected','labeled']
-    print('converting')
-    for data_type in detected_labeled:
-
-        datatype_dir = os.path.join(CUHK03_dir, data_type)
-        if not os.path.exists(datatype_dir):
-                os.makedirs(datatype_dir)
-
-        for campair in range(len(f[data_type][0])):
-            campair_dir = os.path.join(datatype_dir,'P%d'%(campair+1))
-            cam1_dir = os.path.join(campair_dir,'cam1')
-            cam2_dir = os.path.join(campair_dir,'cam2')
-
-            if not os.path.exists(campair_dir):
-                os.makedirs(campair_dir)
-            if not os.path.exists(cam1_dir):
-                os.makedirs(cam1_dir)
-            if not os.path.exists(cam2_dir):
-                os.makedirs(cam2_dir)
-
-            for img_no in range(f[f[data_type][0][campair]].shape[0]):
-                if img_no < 5:
-                    cam_dir = 'cam1'
-                else:
-                    cam_dir = 'cam2'
-                for person_id in range(f[f[data_type][0][campair]].shape[1]):
-                    img = np.array(f[f[f[data_type][0][campair]][img_no][person_id]])
-                    if img.shape[0] !=2:
-                        img = np.transpose(img, (2,1,0))
-                        im = Image.fromarray(img)
-                        im.save(os.path.join(campair_dir, cam_dir, "%d-%d.jpg"%(person_id+1,img_no+1)))
-
 ###########################
 # ReID Dataset Downloader#
 ###########################
 
-def PersonReID_Dataset_Downloader(save_dir, dataset_name):
+def Person_ReID_Dataset_Downloader(save_dir, dataset_name):
     
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
@@ -125,10 +85,6 @@ def PersonReID_Dataset_Downloader(save_dir, dataset_name):
         zip_ref.close()
         shutil.rmtree(temp_dir)
         print("Done")
-        if dataset_name == 'CUHK03':
-            print('Converting cuhk03.mat into images')
-            cuhk03_to_image(os.path.join(save_dir,'CUHK03'))
-            print('Done')
     else:
         print("Dataset Check Success: %s exists!" %dataset_name)
 
@@ -138,4 +94,4 @@ if __name__ == "__main__":
     parser.add_argument(dest="save_dir", action="store", default="~/Datasets/",help="")
     parser.add_argument(dest="dataset_name", action="store", type=str,help="")
     args = parser.parse_args() 
-    PersonReID_Dataset_Downloader(args.save_dir,args.dataset_name)
+    Person_ReID_Dataset_Downloader(args.save_dir,args.dataset_name)

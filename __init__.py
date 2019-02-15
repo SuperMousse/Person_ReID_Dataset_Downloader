@@ -1,1 +1,1 @@
-from .PersonReID_Dataset_Downloader.py import PersonReID_Dataset_Downloader
+from .Person_ReID_Dataset_Downloader.py import Person_ReID_Dataset_Downloader
